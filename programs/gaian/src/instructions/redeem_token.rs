@@ -13,7 +13,7 @@ pub struct RedeemToken<'info> {
     #[account(mut)]
     pub signer: Signer<'info>,
     #[account(
-        seeds = [b"gaian".as_ref(), pt_mint.key().as_ref(), yt_mint.key().as_ref()],
+        seeds = [b"gaian_token".as_ref(), pt_mint.key().as_ref(), yt_mint.key().as_ref()],
         bump = gaian.bump,
         has_one = pt_mint,
         has_one = yt_mint,

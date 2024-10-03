@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/gaian.json`.
  */
 export type Gaian = {
-  "address": "399QaMKHd7E8n8kQ9R7HoCN41cdSRnxwBCj89s2fDsw4",
+  "address": "EZ6wxSVyZgHGSNhg63hh8X9sovbugPMHJ5pG6ntyWQ1x",
   "metadata": {
     "name": "gaian",
     "version": "0.1.0",
@@ -485,6 +485,12 @@ export type Gaian = {
                   97,
                   105,
                   97,
+                  110,
+                  95,
+                  116,
+                  111,
+                  107,
+                  101,
                   110
                 ]
               },
@@ -1681,6 +1687,12 @@ export type Gaian = {
                   97,
                   105,
                   97,
+                  110,
+                  95,
+                  116,
+                  111,
+                  107,
+                  101,
                   110
                 ]
               },

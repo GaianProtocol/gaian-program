@@ -5,7 +5,7 @@ use instructions::*;
 mod error;
 mod state;
 
-declare_id!("399QaMKHd7E8n8kQ9R7HoCN41cdSRnxwBCj89s2fDsw4");
+declare_id!("EZ6wxSVyZgHGSNhg63hh8X9sovbugPMHJ5pG6ntyWQ1x");
 
 #[program]
 pub mod gaian {

@@ -5,7 +5,7 @@ resolution = true
 skip-lint = false
 
 [programs.devnet]
-gaian = "399QaMKHd7E8n8kQ9R7HoCN41cdSRnxwBCj89s2fDsw4"
+gaian = "EZ6wxSVyZgHGSNhg63hh8X9sovbugPMHJ5pG6ntyWQ1x"
 
 [registry]
 url = "https://api.apr.dev"

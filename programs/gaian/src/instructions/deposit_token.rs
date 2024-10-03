@@ -13,19 +13,19 @@ pub struct DepositToken<'info> {
     #[account(mut)]
     pub signer: Signer<'info>,
     #[account(
-        seeds = [b"gaian".as_ref(), pt_mint.key().as_ref(), yt_mint.key().as_ref()],
-        bump = gaian.bump,
+        seeds = [b"gaian_token".as_ref(), pt_mint.key().as_ref(), yt_mint.key().as_ref()],
+        bump,
         has_one = pt_mint,
         has_one = yt_mint,
     )]
     pub gaian: Box<Account<'info, Gaian>>,
-    pub mint: Account<'info, Mint>,
+    pub mint: Box<Account<'info, Mint>>,
     #[account(
         mut,
         associated_token::mint = mint,
         associated_token::authority = signer,
     )]
-    pub signer_ata: Account<'info, TokenAccount>,
+    pub signer_ata: Box<Account<'info, TokenAccount>>,
     #[account(
         mut,
         associated_token::mint = mint,
@@ -39,11 +39,12 @@ pub struct DepositToken<'info> {
     )]
     pub pt_mint: Box<Account<'info, Mint>>,
     #[account(
-        mut,
+        init_if_needed,
+        payer = signer,
         associated_token::mint = pt_mint,
         associated_token::authority = signer,
     )]
-    pub signer_pt_mint_ata: Account<'info, TokenAccount>,
+    pub signer_pt_mint_ata: Box<Account<'info, TokenAccount>>,
     #[account(
         mut,
         seeds = [b"gaian_yt".as_ref(), suffix.as_bytes().as_ref()],
@@ -51,11 +52,12 @@ pub struct DepositToken<'info> {
     )]
     pub yt_mint: Box<Account<'info, Mint>>,
     #[account(
-        mut,
+        init_if_needed,
+        payer = signer,
         associated_token::mint = yt_mint,
         associated_token::authority = signer,
     )]
-    pub signer_yt_mint_ata: Account<'info, TokenAccount>,
+    pub signer_yt_mint_ata: Box<Account<'info, TokenAccount>>,
     pub token_program: Program<'info, Token>,
     pub associated_token_program: Program<'info, AssociatedToken>,
     pub system_program: Program<'info, System>,
