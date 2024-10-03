@@ -15,6 +15,7 @@ import {
   loadKeypairFromFile,
   getPTTokenPda,
   getYTTokenPda,
+  getGaianPda,
 } from "./utils";
 
 const network = process.env.NETWORK || "devnet";
@@ -26,7 +27,7 @@ async function initialize() {
 
   const program = new Program(idl as unknown as Gaian, provider);
 
-  const suffix = "311224";
+  const suffix = tokenAddresses[network].solSuffix;
   const { pt } = getPTTokenPda(program, suffix);
   const { yt } = getYTTokenPda(program, suffix);
   console.log("ptMint:", pt.toBase58());
@@ -35,7 +36,7 @@ async function initialize() {
   const expiration = new BN(1735541168);
 
   const ix = await program.methods
-    .initialize(pt, yt, suffix, expiration)
+    .initialize(suffix, expiration)
     .accounts({})
     .instruction();
 
@@ -50,10 +51,7 @@ async function initialize() {
   const sig = await sendAndConfirmTransaction(connection, transaction, [owner]);
   console.log("tx:", sig);
 
-  const [gaian, _] = PublicKey.findProgramAddressSync(
-    [anchor.utils.bytes.utf8.encode("gaian")],
-    program.programId
-  );
+  const { gaian } = getGaianPda(program, pt, yt);
   console.log(`gaian address: ${gaian.toBase58()}`);
 
   const data = await program.account.gaian.fetch(gaian);

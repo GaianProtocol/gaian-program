@@ -13,7 +13,7 @@ pub struct DepositToken<'info> {
     #[account(mut)]
     pub signer: Signer<'info>,
     #[account(
-        seeds = [b"gaian"],
+        seeds = [b"gaian".as_ref(), pt_mint.key().as_ref(), yt_mint.key().as_ref()],
         bump = gaian.bump,
         has_one = pt_mint,
         has_one = yt_mint,
@@ -32,6 +32,11 @@ pub struct DepositToken<'info> {
         associated_token::authority = gaian
     )]
     pub vault: Box<Account<'info, TokenAccount>>,
+    #[account(
+        mut,
+        seeds = [b"gaian_pt".as_ref(), suffix.as_bytes().as_ref()],
+        bump,
+    )]
     pub pt_mint: Box<Account<'info, Mint>>,
     #[account(
         mut,
@@ -39,6 +44,11 @@ pub struct DepositToken<'info> {
         associated_token::authority = signer,
     )]
     pub signer_pt_mint_ata: Account<'info, TokenAccount>,
+    #[account(
+        mut,
+        seeds = [b"gaian_yt".as_ref(), suffix.as_bytes().as_ref()],
+        bump,
+    )]
     pub yt_mint: Box<Account<'info, Mint>>,
     #[account(
         mut,
@@ -53,8 +63,8 @@ pub struct DepositToken<'info> {
 
 impl<'info> DepositToken<'info> {
     fn mint_pt(&self, suffix: &str, amount: u64, bump: u8) -> Result<()> {
-        // let seeds = &[b"gaian_pt".as_ref(), suffix.as_bytes().as_ref(), &[bump]];
-        let seeds = &["gaian_pt".as_bytes(), &[bump]];
+        let seeds = &[b"gaian_pt".as_ref(), suffix.as_bytes().as_ref(), &[bump]];
+        // let seeds = &["gaian_pt".as_bytes(), &[bump]];
         let signer = &[&seeds[..]];
 
         mint_to(
@@ -74,8 +84,8 @@ impl<'info> DepositToken<'info> {
     }
 
     fn mint_yt(&self, suffix: &str, amount: u64, bump: u8) -> Result<()> {
-        // let seeds = &[b"gaian_yt".as_ref(), suffix.as_bytes().as_ref(), &[bump]];
-        let seeds = &["gaian_yt".as_bytes(), &[bump]];
+        let seeds = &[b"gaian_yt".as_ref(), suffix.as_bytes().as_ref(), &[bump]];
+        // let seeds = &["gaian_yt".as_bytes(), &[bump]];
         let signer = &[&seeds[..]];
 
         mint_to(
@@ -118,12 +128,6 @@ impl<'info> DepositToken<'info> {
 
         self.mint_pt(&suffix, amount, pt_bump)?;
         self.mint_yt(&suffix, amount, yt_bump)?;
-
-        // let pt_seeds = &["gaian_pt".as_bytes(), suffix.as_bytes(), &[pt_bump]];
-        // self.mint(pt_seeds, &self.pt_mint, &self.signer_pt_mint_ata, amount)?;
-        //
-        // let yt_seeds = &["gaian_yt".as_bytes(), suffix.as_bytes(), &[yt_bump]];
-        // self.mint(yt_seeds, &self.yt_mint, &self.signer_yt_mint_ata, amount)?;
 
         Ok(())
     }

@@ -13,7 +13,7 @@ pub struct RedeemToken<'info> {
     #[account(mut)]
     pub signer: Signer<'info>,
     #[account(
-        seeds = [b"gaian"],
+        seeds = [b"gaian".as_ref(), pt_mint.key().as_ref(), yt_mint.key().as_ref()],
         bump = gaian.bump,
         has_one = pt_mint,
         has_one = yt_mint,
@@ -32,6 +32,11 @@ pub struct RedeemToken<'info> {
         associated_token::authority = gaian
     )]
     pub vault: Box<Account<'info, TokenAccount>>,
+    #[account(
+        mut,
+        seeds = [b"gaian_pt".as_ref(), suffix.as_bytes().as_ref()],
+        bump,
+    )]
     pub pt_mint: Box<Account<'info, Mint>>,
     #[account(
         mut,
@@ -39,6 +44,11 @@ pub struct RedeemToken<'info> {
         associated_token::authority = signer,
     )]
     pub signer_pt_mint_ata: Account<'info, TokenAccount>,
+    #[account(
+        mut,
+        seeds = [b"gaian_yt".as_ref(), suffix.as_bytes().as_ref()],
+        bump,
+    )]
     pub yt_mint: Box<Account<'info, Mint>>,
     #[account(
         mut,
@@ -90,8 +100,12 @@ impl<'info> RedeemToken<'info> {
             yt_amount,
         )?;
 
-        // let seeds = &["gaian".as_bytes(), suffix.as_bytes(), &[self.gaian.bump]];
-        let seeds = &["gaian".as_bytes(), &[self.gaian.bump]];
+        let seeds = &[
+            b"gaian_token".as_ref(),
+            suffix.as_bytes().as_ref(),
+            &[self.gaian.bump],
+        ];
+        // let seeds = &["gaian".as_bytes(), &[self.gaian.bump]];
         let signer = &[&seeds[..]];
 
         transfer_checked(

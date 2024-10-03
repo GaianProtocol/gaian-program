@@ -5,11 +5,21 @@ import { Gaian } from "./idl/gaian";
 
 interface Config {
   rpcUrl: string;
+
+  solSuffix: string;
+
+  msol: PublicKey;
+  msolSuffix: string;
 }
 
 export const tokenAddresses: Record<string, Config> = {
   devnet: {
     rpcUrl: clusterApiUrl("devnet"),
+
+    solSuffix: "311224",
+
+    msol: new PublicKey("2A8vKToJrRGQwQyCZgVmp6jDd2gqZquRPZLhvNCaU4QD"),
+    msolSuffix: "msolQ4",
   },
 };
 
@@ -37,12 +47,32 @@ export async function getProvider(
   return provider;
 }
 
-export function getGaianPda(program: Program<Gaian>): {
+export function getGaianPda(
+  program: Program<Gaian>,
+  ptMint: PublicKey,
+  ytMint: PublicKey
+): {
   gaian: PublicKey;
   bump: number;
 } {
   const [gaian, bump] = PublicKey.findProgramAddressSync(
-    [Buffer.from("gaian")],
+    [Buffer.from("gaian"), ptMint.toBuffer(), ytMint.toBuffer()],
+    program.programId
+  );
+
+  return { gaian, bump };
+}
+
+export function getGaianTokenPda(
+  program: Program<Gaian>,
+  ptMint: PublicKey,
+  ytMint: PublicKey
+): {
+  gaian: PublicKey;
+  bump: number;
+} {
+  const [gaian, bump] = PublicKey.findProgramAddressSync(
+    [Buffer.from("gaian_token"), ptMint.toBuffer(), ytMint.toBuffer()],
     program.programId
   );
 

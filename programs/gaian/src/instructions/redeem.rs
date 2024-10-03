@@ -12,7 +12,7 @@ pub struct Redeem<'info> {
     #[account(mut)]
     pub signer: Signer<'info>,
     #[account(
-        seeds = [b"gaian"],
+        seeds = [b"gaian".as_ref(), pt_mint.key().as_ref(), yt_mint.key().as_ref()],
         bump = gaian.bump,
         has_one = pt_mint,
         has_one = yt_mint,
@@ -20,7 +20,7 @@ pub struct Redeem<'info> {
     pub gaian: Box<Account<'info, Gaian>>,
     #[account(
         mut,
-        seeds = [b"gaian_vault"],
+        seeds = [b"gaian_vault".as_ref(), pt_mint.key().as_ref(), yt_mint.key().as_ref()],
         bump,
     )]
     pub sol_vault: Box<Account<'info, SolVault>>,

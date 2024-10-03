@@ -13,7 +13,6 @@ pub struct CreateToken<'info> {
     #[account(
         init,
         seeds = [b"gaian_pt".as_ref(), suffix.as_bytes().as_ref()],
-        // seeds = [b"gaian_pt"],
         bump,
         payer = signer,
         mint::decimals = 9,
@@ -29,7 +28,6 @@ pub struct CreateToken<'info> {
     #[account(
         init,
         seeds = [b"gaian_yt".as_ref(), suffix.as_bytes().as_ref()],
-        // seeds = [b"gaian_yt"],
         bump,
         payer = signer,
         mint::decimals = 9,
@@ -50,7 +48,6 @@ pub struct CreateToken<'info> {
 
 impl<'info> CreateToken<'info> {
     fn create_pt_token(&self, suffix: &str, bump: u8) -> Result<()> {
-        // let seeds = &["gaian_pt".as_bytes(), &[bump]];
         let seeds = &[b"gaian_pt".as_ref(), suffix.as_bytes().as_ref(), &[bump]];
         let signer = &[&seeds[..]];
 
@@ -91,7 +88,6 @@ impl<'info> CreateToken<'info> {
     }
 
     fn create_yt_token(&self, suffix: &str, bump: u8) -> Result<()> {
-        // let seeds = &["gaian_yt".as_bytes(), &[bump]];
         let seeds = &[b"gaian_yt".as_ref(), suffix.as_bytes().as_ref(), &[bump]];
         let signer = &[&seeds[..]];
 

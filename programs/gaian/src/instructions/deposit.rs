@@ -12,7 +12,7 @@ pub struct Deposit<'info> {
     #[account(mut)]
     pub signer: Signer<'info>,
     #[account(
-        seeds = [b"gaian"],
+        seeds = [b"gaian".as_ref(), pt_mint.key().as_ref(), yt_mint.key().as_ref()],
         bump = gaian.bump,
         has_one = pt_mint,
         has_one = yt_mint,
@@ -20,7 +20,7 @@ pub struct Deposit<'info> {
     pub gaian: Box<Account<'info, Gaian>>,
     #[account(
         mut,
-        seeds = [b"gaian_vault"],
+        seeds = [b"gaian_vault".as_ref(), pt_mint.key().as_ref(), yt_mint.key().as_ref()],
         bump,
     )]
     pub sol_vault: Box<Account<'info, SolVault>>,
@@ -110,12 +110,6 @@ impl<'info> Deposit<'info> {
 
         self.mint_pt(&suffix, amount, pt_bump)?;
         self.mint_yt(&suffix, amount, yt_bump)?;
-
-        // let pt_seeds = &["gaian_pt".as_bytes(), suffix.as_bytes(), &[pt_bump]];
-        // self.mint(pt_seeds, &self.pt_mint, &self.signer_pt_mint_ata, amount)?;
-        //
-        // let yt_seeds = &["gaian_yt".as_bytes(), suffix.as_bytes(), &[yt_bump]];
-        // self.mint(yt_seeds, &self.yt_mint, &self.signer_yt_mint_ata, amount)?;
 
         Ok(())
     }

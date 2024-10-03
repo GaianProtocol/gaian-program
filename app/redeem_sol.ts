@@ -26,16 +26,21 @@ async function initialize() {
 
   const program = new Program(idl as unknown as Gaian, provider);
 
-  const suffix = "311224";
+  const suffix = tokenAddresses[network].solSuffix;
   const amount = new BN(100_000); // 0.1 SOL
+  const ptAmount = new BN(100_000); // 0.1 SOL
+  const ytAmount = new BN(100_000); // 0.1 SOL
   const { pt, bump: ptBump } = getPTTokenPda(program, suffix);
   const { yt, bump: ytBump } = getYTTokenPda(program, suffix);
   console.log("pt:", pt.toBase58(), "bump:", ptBump);
   console.log("yt:", yt.toBase58(), "bump:", ytBump);
 
   const ix = await program.methods
-    .deposit(suffix, amount, ptBump, ytBump)
-    .accounts({})
+    .redeem(suffix, amount, ptAmount, ytAmount)
+    .accounts({
+      // ptMint: pt,
+      // ytMint: yt,
+    })
     .instruction();
 
   const addPriorityFee = ComputeBudgetProgram.setComputeUnitPrice({

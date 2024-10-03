@@ -6,7 +6,7 @@ import {
   sendAndConfirmTransaction,
 } from "@solana/web3.js";
 import * as anchor from "@coral-xyz/anchor";
-import { Program, BN } from "@coral-xyz/anchor";
+import { Program } from "@coral-xyz/anchor";
 import * as idl from "./idl/gaian.json";
 import { Gaian } from "./idl/gaian";
 import {
@@ -26,18 +26,41 @@ async function initialize() {
 
   const program = new Program(idl as unknown as Gaian, provider);
 
-  const suffix = "311224";
-  const amount = new BN(100_000); // 0.1 SOL
-  const ptAmount = new BN(100_000); // 0.1 SOL
-  const ytAmount = new BN(100_000); // 0.1 SOL
-  const { pt, bump: ptBump } = getPTTokenPda(program, suffix);
-  const { yt, bump: ytBump } = getYTTokenPda(program, suffix);
-  console.log("pt:", pt.toBase58(), "bump:", ptBump);
-  console.log("yt:", yt.toBase58(), "bump:", ytBump);
+  const suffix = tokenAddresses[network].msolSuffix;
+  const { pt } = getPTTokenPda(program, suffix);
+  console.log("ptMint:", pt.toBase58());
+
+  const { yt } = getYTTokenPda(program, suffix);
+  console.log("ytMint:", yt.toBase58());
+
+  const TOKEN_METADATA_PROGRAM_ID = new PublicKey(
+    "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+  );
+
+  const [ptMetadataAddress] = PublicKey.findProgramAddressSync(
+    [
+      Buffer.from("metadata"),
+      TOKEN_METADATA_PROGRAM_ID.toBuffer(),
+      pt.toBuffer(),
+    ],
+    TOKEN_METADATA_PROGRAM_ID
+  );
+
+  const [ytMetadataAddress] = PublicKey.findProgramAddressSync(
+    [
+      Buffer.from("metadata"),
+      TOKEN_METADATA_PROGRAM_ID.toBuffer(),
+      yt.toBuffer(),
+    ],
+    TOKEN_METADATA_PROGRAM_ID
+  );
 
   const ix = await program.methods
-    .redeem(suffix, amount, ptAmount, ytAmount)
-    .accounts({})
+    .createToken(suffix)
+    .accounts({
+      ptMetadataAccount: ptMetadataAddress,
+      ytMetadataAccount: ytMetadataAddress,
+    })
     .instruction();
 
   const addPriorityFee = ComputeBudgetProgram.setComputeUnitPrice({

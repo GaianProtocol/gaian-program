@@ -1,5 +1,5 @@
 {
-  "address": "HkjjfMuFk1Yr9HYoiJmZQV1V7fWwqxThhcWykVNXknhE",
+  "address": "399QaMKHd7E8n8kQ9R7HoCN41cdSRnxwBCj89s2fDsw4",
   "metadata": {
     "name": "gaian",
     "version": "0.1.0",
@@ -138,6 +138,14 @@
                   97,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "pt_mint"
+              },
+              {
+                "kind": "account",
+                "path": "yt_mint"
               }
             ]
           }
@@ -162,6 +170,14 @@
                   108,
                   116
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "pt_mint"
+              },
+              {
+                "kind": "account",
+                "path": "yt_mint"
               }
             ]
           }
@@ -465,6 +481,14 @@
                   97,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "pt_mint"
+              },
+              {
+                "kind": "account",
+                "path": "yt_mint"
               }
             ]
           }
@@ -654,6 +678,28 @@
         },
         {
           "name": "pt_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          },
           "relations": [
             "gaian"
           ]
@@ -750,6 +796,28 @@
         },
         {
           "name": "yt_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  121,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          },
           "relations": [
             "gaian"
           ]
@@ -908,6 +976,14 @@
                   97,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "pt_mint"
+              },
+              {
+                "kind": "account",
+                "path": "yt_mint"
               }
             ]
           }
@@ -932,6 +1008,62 @@
                   108,
                   116
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "pt_mint"
+              },
+              {
+                "kind": "account",
+                "path": "yt_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "pt_mint",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          }
+        },
+        {
+          "name": "yt_mint",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  121,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
               }
             ]
           }
@@ -946,14 +1078,6 @@
         }
       ],
       "args": [
-        {
-          "name": "pt_mint",
-          "type": "pubkey"
-        },
-        {
-          "name": "yt_mint",
-          "type": "pubkey"
-        },
         {
           "name": "suffix",
           "type": "string"
@@ -1002,6 +1126,14 @@
                   101,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "pt_mint"
+              },
+              {
+                "kind": "account",
+                "path": "yt_mint"
               }
             ]
           }
@@ -1100,6 +1232,54 @@
           }
         },
         {
+          "name": "pt_mint",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          }
+        },
+        {
+          "name": "yt_mint",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  121,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          }
+        },
+        {
           "name": "token_program",
           "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
         },
@@ -1113,14 +1293,6 @@
         }
       ],
       "args": [
-        {
-          "name": "pt_mint",
-          "type": "pubkey"
-        },
-        {
-          "name": "yt_mint",
-          "type": "pubkey"
-        },
         {
           "name": "suffix",
           "type": "string"
@@ -1162,6 +1334,14 @@
                   97,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "pt_mint"
+              },
+              {
+                "kind": "account",
+                "path": "yt_mint"
               }
             ]
           }
@@ -1186,6 +1366,14 @@
                   108,
                   116
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "pt_mint"
+              },
+              {
+                "kind": "account",
+                "path": "yt_mint"
               }
             ]
           }
@@ -1489,6 +1677,14 @@
                   97,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "pt_mint"
+              },
+              {
+                "kind": "account",
+                "path": "yt_mint"
               }
             ]
           }
@@ -1678,6 +1874,28 @@
         },
         {
           "name": "pt_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          },
           "relations": [
             "gaian"
           ]
@@ -1774,6 +1992,28 @@
         },
         {
           "name": "yt_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  121,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          },
           "relations": [
             "gaian"
           ]
@@ -1963,10 +2203,6 @@
           {
             "name": "yt_mint",
             "type": "pubkey"
-          },
-          {
-            "name": "suffix",
-            "type": "string"
           },
           {
             "name": "expiration_time",

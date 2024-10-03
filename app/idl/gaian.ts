@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/gaian.json`.
  */
 export type Gaian = {
-  "address": "HkjjfMuFk1Yr9HYoiJmZQV1V7fWwqxThhcWykVNXknhE",
+  "address": "399QaMKHd7E8n8kQ9R7HoCN41cdSRnxwBCj89s2fDsw4",
   "metadata": {
     "name": "gaian",
     "version": "0.1.0",
@@ -144,6 +144,14 @@ export type Gaian = {
                   97,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "ptMint"
+              },
+              {
+                "kind": "account",
+                "path": "ytMint"
               }
             ]
           }
@@ -168,6 +176,14 @@ export type Gaian = {
                   108,
                   116
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "ptMint"
+              },
+              {
+                "kind": "account",
+                "path": "ytMint"
               }
             ]
           }
@@ -471,6 +487,14 @@ export type Gaian = {
                   97,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "ptMint"
+              },
+              {
+                "kind": "account",
+                "path": "ytMint"
               }
             ]
           }
@@ -660,6 +684,28 @@ export type Gaian = {
         },
         {
           "name": "ptMint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          },
           "relations": [
             "gaian"
           ]
@@ -756,6 +802,28 @@ export type Gaian = {
         },
         {
           "name": "ytMint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  121,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          },
           "relations": [
             "gaian"
           ]
@@ -914,6 +982,14 @@ export type Gaian = {
                   97,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "ptMint"
+              },
+              {
+                "kind": "account",
+                "path": "ytMint"
               }
             ]
           }
@@ -938,6 +1014,62 @@ export type Gaian = {
                   108,
                   116
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "ptMint"
+              },
+              {
+                "kind": "account",
+                "path": "ytMint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "ptMint",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          }
+        },
+        {
+          "name": "ytMint",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  121,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
               }
             ]
           }
@@ -952,14 +1084,6 @@ export type Gaian = {
         }
       ],
       "args": [
-        {
-          "name": "ptMint",
-          "type": "pubkey"
-        },
-        {
-          "name": "ytMint",
-          "type": "pubkey"
-        },
         {
           "name": "suffix",
           "type": "string"
@@ -1008,6 +1132,14 @@ export type Gaian = {
                   101,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "ptMint"
+              },
+              {
+                "kind": "account",
+                "path": "ytMint"
               }
             ]
           }
@@ -1106,6 +1238,54 @@ export type Gaian = {
           }
         },
         {
+          "name": "ptMint",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          }
+        },
+        {
+          "name": "ytMint",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  121,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          }
+        },
+        {
           "name": "tokenProgram",
           "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
         },
@@ -1119,14 +1299,6 @@ export type Gaian = {
         }
       ],
       "args": [
-        {
-          "name": "ptMint",
-          "type": "pubkey"
-        },
-        {
-          "name": "ytMint",
-          "type": "pubkey"
-        },
         {
           "name": "suffix",
           "type": "string"
@@ -1168,6 +1340,14 @@ export type Gaian = {
                   97,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "ptMint"
+              },
+              {
+                "kind": "account",
+                "path": "ytMint"
               }
             ]
           }
@@ -1192,6 +1372,14 @@ export type Gaian = {
                   108,
                   116
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "ptMint"
+              },
+              {
+                "kind": "account",
+                "path": "ytMint"
               }
             ]
           }
@@ -1495,6 +1683,14 @@ export type Gaian = {
                   97,
                   110
                 ]
+              },
+              {
+                "kind": "account",
+                "path": "ptMint"
+              },
+              {
+                "kind": "account",
+                "path": "ytMint"
               }
             ]
           }
@@ -1684,6 +1880,28 @@ export type Gaian = {
         },
         {
           "name": "ptMint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          },
           "relations": [
             "gaian"
           ]
@@ -1780,6 +1998,28 @@ export type Gaian = {
         },
         {
           "name": "ytMint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  105,
+                  97,
+                  110,
+                  95,
+                  121,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "suffix"
+              }
+            ]
+          },
           "relations": [
             "gaian"
           ]
@@ -1969,10 +2209,6 @@ export type Gaian = {
           {
             "name": "ytMint",
             "type": "pubkey"
-          },
-          {
-            "name": "suffix",
-            "type": "string"
           },
           {
             "name": "expirationTime",

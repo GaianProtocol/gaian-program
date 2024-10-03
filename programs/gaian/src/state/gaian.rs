@@ -7,7 +7,6 @@ pub struct Gaian {
     pub mint: Option<Pubkey>, // None if using sol
     pub pt_mint: Pubkey,
     pub yt_mint: Pubkey,
-    pub suffix: String,
     pub expiration_time: u64,
 }
 

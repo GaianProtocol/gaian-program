@@ -5,7 +5,7 @@ use instructions::*;
 mod error;
 mod state;
 
-declare_id!("HkjjfMuFk1Yr9HYoiJmZQV1V7fWwqxThhcWykVNXknhE");
+declare_id!("399QaMKHd7E8n8kQ9R7HoCN41cdSRnxwBCj89s2fDsw4");
 
 #[program]
 pub mod gaian {
@@ -18,25 +18,21 @@ pub mod gaian {
 
     pub fn initialize(
         ctx: Context<Initialize>,
-        pt_mint: Pubkey,
-        yt_mint: Pubkey,
         suffix: String,
         expiration_time: u64,
     ) -> Result<()> {
         ctx.accounts
-            .initialize(&ctx.bumps, pt_mint, yt_mint, suffix, expiration_time)?;
+            .initialize(&ctx.bumps, suffix, expiration_time)?;
         Ok(())
     }
 
     pub fn initialize_token(
         ctx: Context<InitializeToken>,
-        pt_mint: Pubkey,
-        yt_mint: Pubkey,
         suffix: String,
         expiration_time: u64,
     ) -> Result<()> {
         ctx.accounts
-            .initialize(&ctx.bumps, pt_mint, yt_mint, suffix, expiration_time)?;
+            .initialize(&ctx.bumps, suffix, expiration_time)?;
         Ok(())
     }
 

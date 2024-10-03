@@ -26,7 +26,7 @@ async function initialize() {
 
   const program = new Program(idl as unknown as Gaian, provider);
 
-  const suffix = "311224";
+  const suffix = tokenAddresses[network].solSuffix;
   const { pt } = getPTTokenPda(program, suffix);
   console.log("ptMint:", pt.toBase58());
 
