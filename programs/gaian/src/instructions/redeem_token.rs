@@ -100,9 +100,12 @@ impl<'info> RedeemToken<'info> {
             yt_amount,
         )?;
 
+        let pt_mint_key = self.pt_mint.key();
+        let yt_mint_key = self.yt_mint.key();
         let seeds = &[
             b"gaian_token".as_ref(),
-            suffix.as_bytes().as_ref(),
+            pt_mint_key.as_ref(),
+            yt_mint_key.as_ref(),
             &[self.gaian.bump],
         ];
         // let seeds = &["gaian".as_bytes(), &[self.gaian.bump]];

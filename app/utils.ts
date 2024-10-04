@@ -88,7 +88,6 @@ export function getPTTokenPda(
 } {
   const [pt, bump] = PublicKey.findProgramAddressSync(
     [Buffer.from("gaian_pt"), Buffer.from(suffix)],
-    // [Buffer.from("gaian_pt")],
     program.programId
   );
 
@@ -104,7 +103,6 @@ export function getYTTokenPda(
 } {
   const [yt, bump] = PublicKey.findProgramAddressSync(
     [Buffer.from("gaian_yt"), Buffer.from(suffix)],
-    // [Buffer.from("gaian_yt")],
     program.programId
   );
 
